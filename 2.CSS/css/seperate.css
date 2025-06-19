@@ -1,0 +1,25 @@
+h1 {
+    color: red;
+}
+h2 {
+    color: blue;
+}
+h3 {
+    color: green;
+}
+.color1 {
+    color: blue;
+    background-color: yellow;
+    border: 1px solid red;
+}
+.color2 {
+    color: red;
+    background-color: cyan;
+    border: 3px dotted purple;
+}
+#color3 {
+    color: magenta;
+    background-color: white;
+    border: 5px dashed black;
+    width: 50%;
+}

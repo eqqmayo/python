@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Z-index 학습</title>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            position: relative;
+        }
+        .box1 {
+            background-color: blue;
+            z-index: 4; /* 상대적인 우선순위, 숫자 클수록 위에 올라옴 */
+        }
+        .box2 {
+            background-color: red;
+            bottom: 100px;
+            z-index: 5;
+        }
+        .box3 {
+            background-color: yellow;
+            bottom: 70px;
+        }
+        .box4 {
+            background-color: green;
+            bottom: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">BLUE</div>
+        <div class="box2">RED</div>
+        <div class="box3">YELLOW</div>
+        <div class="box4">GREEN</div>
+    </div>
+</body>
+</html>

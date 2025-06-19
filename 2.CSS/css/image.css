@@ -1,0 +1,17 @@
+.menu p {
+    display: inline-block;
+    width: 100px;
+    border: 3px solid red;
+    text-align: center;
+}
+
+#cat1 {
+    float: left;
+    margin: 20px;
+    padding: 10px;
+    border: 3px solid blue;
+}
+
+#cat2 {
+    float: right;
+}

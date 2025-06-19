@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Div 학습</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+            margin: 10px;
+        }
+        .location {
+            background-color: yellow;
+            position: relative;
+            top: 100px;
+            left: 100px;
+        }
+        /* 셀렉터의 다영한 표현법 학습 div p 와 div > p 등 */
+        div > p {
+            position: relative;
+            top: 20px;
+            left: 50px;
+        }
+        .cat-container {
+            width: 300px;
+            height: 300px;
+            background-image: url(images/cat.jpeg);
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div class="location">2</div>
+    <div>3</div>
+    <div class="cat-container">
+        <p>귀여운 춘봉이</p>
+    </div>
+    <p> 첨지</p>
+</body>
+</html>
