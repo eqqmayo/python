@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>jhyun</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+  <body>
+    <h1>Jhyun</h1>
+    
+    <div class="profile-info">
+        <p>-</p>
+        <p>Park Juhyun</p>
+        <p>Seoul, South Korea</p>
+        <p>eqqmayo@gmail.com</p>
+    </div>
+
+    <div>
+        <section class="interests-section">
+            <div class="interests-container">
+                <h2 class="interests-title">I'm Into ..</h2>
+                <span class="interest-item interest-1">권진아</span>
+                <span class="interest-item interest-2">클래지콰이</span>
+                <span class="interest-item interest-3">요가</span>
+                <span class="interest-item interest-4">인테리어</span>
+            </div>
+        </section>
+    </div>
+
+    <div class="music-player">
+        <div class="player-container">
+            <img id="vinyl" src="../assets/vinyl.png" alt="vinyl" 
+                 class="vinyl-image"
+                 onclick="toggleMusic()">
+            
+            <div id="clickText" class="click-text">
+                Click to Play
+            </div>
+        </div>
+    </div>
+
+    <audio id="musicPlayer" loop>
+        <source src="../assets/lovers.mp4" type="audio/mp4">
+    </audio>
+
+    <script>
+        let isPlaying = false;
+        const musicPlayer = document.getElementById('musicPlayer');
+        const vinyl = document.getElementById('vinyl');
+        const clickText = document.getElementById('clickText');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                musicPlayer.pause();
+                vinyl.style.filter = 'none';
+                vinyl.style.animation = 'none';
+                clickText.style.display = 'block'; 
+                isPlaying = false;
+            } else {
+                musicPlayer.play().then(() => {
+                    vinyl.style.filter = 'brightness(1.2)';
+                    vinyl.style.animation = 'spin 3s linear infinite';
+                    clickText.style.display = 'none'; 
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log('음악 재생 실패:', error);
+                    alert('음악 파일을 찾을 수 없습니다. lovers.mp4 파일이 있는지 확인해주세요.');
+                });
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 오디오 이벤트 리스너
+        musicPlayer.addEventListener('ended', () => {
+            vinyl.style.filter = 'none';
+            vinyl.style.animation = 'none';
+            isPlaying = false;
+        });
+    </script>
+
+</body>
+</html>

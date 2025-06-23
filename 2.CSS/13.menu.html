@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .container .item {
+            float: left;
+            width: 100px;
+            text-align: center;
+            border-right: 1px solid #000;
+            background-color: #6b96fc;
+        }
+        .container .item.last {  /* 띄어쓰기 의미 유의 */
+            float: right;
+            border-right: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">menu1</div>
+        <div class="item">menu2</div>
+        <div class="item">menu3</div>
+        <div class="item">menu4</div>
+        <div class="item">login</div>
+    </div>
+</body>
+</html>

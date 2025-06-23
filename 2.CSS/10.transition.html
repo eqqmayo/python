@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .square {
+            width: 100px;
+            height: 100px;
+            background-color: #6b96fc;
+            transition-property: width, height, background-color; /* 속성 잘 골라야 함 */
+            transition-duration: 1s;
+            transition-timing-function: ease; 
+        }
+        .square:hover {
+            width: 300px;
+            height: 300px;
+            background-color: #ff9191;
+        }
+        .button {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            transition-property: background-color;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+        }
+        .button:hover {
+            background-color: #ff9191;
+        }
+        .image {
+            width: 100px;
+            transition-property: transform;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+        }
+        .image:hover {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="square"></div>
+    <div class="button">마우스를 올려보시오</div>
+    <img class="image" src="images/cat2.jpeg" />
+</body>
+</html>
