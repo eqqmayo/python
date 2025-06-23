@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="changeColor4()">배경색 변경하기</button>
+    <script>
+        function changeColor() {
+            document.body.style.backgroundColor = document.body.style.backgroundColor == 'red' ? 'white' : 'red';
+        }
+
+        function changeColor2() {
+            const colors = ['red', 'blue', 'green'];
+            document.body.style.backgroundColor = 
+                document.body.style.backgroundColor == colors[0] ? colors[1] 
+                : document.body.style.backgroundColor == colors[1] ? colors[2] 
+                : document.body.style.backgroundColor == colors[2] ? colors[0] : colors[0];
+        }
+
+        function changeColor3() {
+            const colors = ['red', 'blue', 'green'];
+            let currentColor = document.body.style.backgroundColor
+            currentColor = currentColor == colors[0] ? colors[1] 
+                : currentColor == colors[1] ? colors[2] 
+                : currentColor == colors[2] ? colors[0] : colors[0];
+
+                document.body.style.backgroundColor = currentColor;
+        }
+
+        let currentIndex = 0;
+
+        function changeColor4() {
+            const colors = ['red', 'blue', 'green'];
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % colors.length;
+        }
+    </script>
+</body>
+</html>
