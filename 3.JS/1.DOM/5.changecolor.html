@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            height: 100vh; /* viewport, 높이의 단위 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #colorCode {
+            margin-top: 20px;
+            background-color: aliceblue;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="changeToRandomColor()">배경색 변경하기</button>
+    <button onclick="changeToRandomColor4()">배경색 변경하기</button>
+    <div id="colorCode">색상 코드는 여기에 표시</button>
     <script>
         function changeColor() {
             document.body.style.backgroundColor = document.body.style.backgroundColor == 'red' ? 'white' : 'red';
@@ -49,6 +64,33 @@
             const bgcolor = `#${r}${g}${b}`;
             document.body.style.backgroundColor = bgcolor;
         }
+
+        function changeToRandomColor2() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+
+            const rgbcolor = `rgb(${r}, ${g}, ${b})`;
+            document.body.style.backgroundColor = rgbcolor;
+        }
+
+        function changeToRandomColor3() {
+            const rrggbb = Math.floor(Math.random() * 16777216).toString(16).padStart(6, '0');
+            document.body.style.backgroundColor = '#' + rrggbb;
+            console.log(rrggbb);
+        }
+
+        function displayColor(color) {
+            const colorDisplay = document.getElementById('colorCode');
+            colorDisplay.textContent = `현재 배경 색상은 ${colorCode}`;
+        }
+
+        function changeToRandomColor4() {
+            const hex = '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
+            console.log(hex);
+            document.body.style.backgroundColor = hex;
+        }
+
     </script>
 </body>
 </html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        #input {
+            width: 400px;
+            height: 50px;
+            text-align: right;
+            font-size: 20px;
+            margin-bottom: 2px;
+            border: 1px solid black;
+            border-radius: 2px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 400px;
+            height: 100%;
+            border-collapse: collapse;
+        }
+
+        button {
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+
+        button:hover {
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="input">
+        <table>
+            <tr>
+                <td><button>+</button></td>
+                <td><button>-</button></td>
+                <td><button>*</button></td>
+                <td><button>/</button></td>
+            </tr>
+            <tr>
+                <td><button>7</button></td>
+                <td><button>8</button></td>
+                <td><button>9</button></td>
+                <td><button onclick="calculate()">=</button></td>
+            </tr>
+            <tr>
+                <td><button>4</button></td>
+                <td><button>5</button></td>
+                <td><button>6</button></td>
+                <td><button onclick="clearAll()">C</button></td>
+            </tr>
+            <tr>
+                <td><button>1</button></td>
+                <td><button>2</button></td>
+                <td><button>3</button></td>
+                <td><button>0</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('button');
+            
+            buttons.forEach(btn => {
+                if (!btn.onclick) {
+                    btn.onclick = function() { makeExpression(this.textContent); }
+                };
+            });
+        });
+
+        const inputElement = document.getElementById('input');
+        let expression = '';
+        let previousInput = '';
+        let isAnotherNumber = false; 
+
+        function makeExpression(input) {      
+            if (isNumber(input)) {
+                if (isAnotherNumber) {
+                    inputElement.value = input; 
+                    isAnotherNumber = false;
+                } else {
+                    inputElement.value += input; 
+                }
+
+                expression += input;
+                previousInput = input;
+            }
+            
+            if (isOperator(input)) {
+                if (expression == '') return;
+                
+                if (isOperator(previousInput)) {
+                    expression = expression.slice(-1) + input;
+                } else {
+                    expression += input;
+                }
+
+                isAnotherNumber = true; 
+                previousInput = input;
+            }
+
+            console.log('expression:', expression, 'previousInput:', previousInput);
+        }
+
+        function calculate() {
+            if (expression == '') return;
+
+            if (isOperator(previousInput)) {
+                expression = expression.slice(-1);
+            }
+                
+            const result = eval(expression);
+            inputElement.value = result;
+            expression = result;
+            previousInput = '';
+        }
+
+        function clearAll() {
+            inputElement.value = '';
+            expression = '';
+            previousInput = '';
+        }
+
+        function isNumber(str) { return !isNaN(str); }
+        function isOperator(str) { return ['+', '-', '*', '/'].includes(str); }
+    </script>
+</body>
+</html>
