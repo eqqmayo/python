@@ -33,8 +33,8 @@
     </table>
     <br />
     <button onclick="changeAllCellColor()">색상 모두 변경</button>
-    <button>색상 짝수만 변경</button>
-    <button>색상 홀수만 변경</button>
+    <button onclick="changeEvenCellColor()">색상 짝수만 변경</button>
+    <button onclick="changeOddCellColor()">색상 홀수만 변경</button>
 
     <script>
         function changeAllCellColor() {
@@ -63,6 +63,24 @@
             // Array.from(cells).forEach(e => {
             //     e.style.backgroundColor = 'lightblue';
             // });
+        }
+
+        function changeOddCellColor() {
+            let cells = document.getElementsByTagName("td");
+            console.log(cells);
+
+            for (let i = 0; i < cells.length; i++) { 
+                cells[i].style.backgroundColor = i % 2 == 0 ? 'lightblue' : null;
+            }
+        }
+
+        function changeEvenCellColor() {
+            let cells = document.getElementsByTagName("td");
+            console.log(cells);
+
+            for (let i = 0; i < cells.length; i++) { 
+                cells[i].style.backgroundColor = i % 2 == 1 ? 'lightblue' : null;
+            }
         }
     </script>
 </body>
