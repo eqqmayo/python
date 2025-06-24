@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #myDiv {
+            background-color: aquamarine;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="showHiddenDiv()">숨겨진 영역 보여주기</button>
+    <div id="myDiv">여기가 숨겨진 div 영역</div>
+
+    <script>
+        function showHiddenDiv() {
+            const divElement = document.getElementById('myDiv'); // DOM은 html을 갖고있는 것, css를 제어할 수 없음
+            console.log(divElement.style.display);
+            // divElement.style.display = divElement.style.display === 'none' ? 'block' : 'none';
+            // 동작하는 기본 로직을 바꿔서 버그 해결은 했지만 css 초기값에 따라 반대버그가 생길 수 있음
+            // divElement.style.display = divElement.style.display !== 'block' ? 'block' : 'none';
+            divElement.style.display = divElement.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function showHiddenDiv2() {
+            const divElement = document.querySelector('#myDiv');
+            const divElementStyle = window.getComputedStyle(divElement).display; // 브라우저에게 렌더링이 다 끝난 시점의 스타일을 알려달라고 요청
+            
+            divElement.style.display = ivElementStyle === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

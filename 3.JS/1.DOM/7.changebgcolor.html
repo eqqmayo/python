@@ -34,7 +34,7 @@
     <br />
     <button onclick="changeAllCellColor()">색상 모두 변경</button>
     <button onclick="changeEvenCellColor()">색상 짝수만 변경</button>
-    <button onclick="changeOddCellColor()">색상 홀수만 변경</button>
+    <button onclick="changeOddCellColor2()">색상 홀수만 변경</button>
 
     <script>
         function changeAllCellColor() {
@@ -65,18 +65,49 @@
             // });
         }
 
-        function changeOddCellColor() {
-            let cells = document.getElementsByTagName("td");
-            console.log(cells);
-
+        const cells = document.getElementsByTagName("td");
+    
+        function changeOddCellColor1() {
             for (let i = 0; i < cells.length; i++) { 
                 cells[i].style.backgroundColor = i % 2 == 0 ? 'lightblue' : null;
             }
         }
 
+        function changeOddCellColor2() {
+            Array.from(cells).forEach((c, i) => {
+                c.style.backgroundColor = i % 2 == 0 ? 'lightblue' : null;
+            });
+        }
+
+        function changeOddCellColor3() {
+            let index = 0;
+            for (const c of cells) {
+                c.style.backgroundColor = i % 2 == 0 ? 'lightblue' : null;
+                index += 1;
+            }
+        }
+
+        // 안됨, 아이디어만 참고
+        function changeOddCellColor4() {
+            // css 셀렉터 스타일로 요소를 가져오기 위한 함수
+            // querySelector - 가장 먼저 매치되는 하나
+            // querySelectorAll - 매치되는 모든 것
+            const oddCells = document.querySelectorAll('td:nth-child(odd)');
+            oddCells.forEach(c => { 
+                c.style.backgroundColor = i % 2 == 0 ? 'lightblue' : null;
+            });   
+        }
+
+        function changeOddCellColor5() {
+            let i = 0;
+            while (i < cells.length) {
+                cells[i].style.backgroundColor = i % 2 == 0 ? 'lightblue' : null;
+                index += 2;
+            }
+        }
+
         function changeEvenCellColor() {
             let cells = document.getElementsByTagName("td");
-            console.log(cells);
 
             for (let i = 0; i < cells.length; i++) { 
                 cells[i].style.backgroundColor = i % 2 == 1 ? 'lightblue' : null;
