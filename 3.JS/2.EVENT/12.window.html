@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>창 사이즈를 변경해 보시오</h3>
+    <script>
+        window.addEventListener('resize', () => {
+            console.log('창 사이즈 바뀌는중');
+
+            const iwidth = window.innerWidth; // 스크롤바 제외한 안쪽 영역
+            const owidth = window.innerWidth; // 스크롤바 포함 바깥 영역
+
+            console.log(`안쪽너비: ${iwidth}, 바깥쪽너비: ${owidth}`);
+        });
+    </script>
+</body>
+</html>

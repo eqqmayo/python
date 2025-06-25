@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="printButton">이 페이지 프린트</button>
+    <script>
+        document.getElementById('printButton').addEventListener('click', () => {
+            window.print();
+        });
+
+        window.onbeforeprint = () => {
+            console.log('출력 전 발생 이벤트');
+        }
+
+        window.onafterprint = () => {
+            console.log('출력 후 발생 이벤트');
+        }
+    </script>
+</body>
+
+</html>

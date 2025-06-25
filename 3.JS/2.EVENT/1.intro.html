@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 학습</title> 
+</head>
+<body>
+    <h1>hey how are you</h1>
+    <script>
+        // DOM 로딩이 완성된 다음에 실행해라
+        // DOM 로딩이 끝났을 뿐, css와 외부 이미지 로딩 등을 보장하진 않음
+        document.addEventListener('DoncontentLoaded', () => {
+            const h1 = document.getElementsByTagName('h1')[0];
+            h1.style.color = red;
+            console.log(`i'm good, you?`);
+        });
+
+        // DOM, CSS, 이미지로딩, JS 실행 등 모두 끝난 후
+        window.onload = () => {
+            console.log('여기는 모든 로딩이 끝났을때');
+        };
+    </script>
+</body>
+</html>

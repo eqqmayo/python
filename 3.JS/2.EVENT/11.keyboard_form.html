@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm" action="/submit" method="post">
+        <textarea id="myTextArea" rows="10" colos="30"></textarea>
+        <br />
+        <button type="submit">제출</button>
+    </form>
+    <script>
+        document.getElementById('myTextArea').addEventListener('keydown', (e) => {
+            if (e.key == 'enter') {
+                //
+            }
+        });
+
+
+    </script>
+</body>
+</html>

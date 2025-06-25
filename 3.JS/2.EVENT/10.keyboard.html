@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #displayKey {
+            font-size: 100px;
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="myInput" placeholder="여기에 입력하시오">
+    <div id="displayKey"></div>
+    <script>
+        document.getElementById('myInput').addEventListener('keydown', (e) => {
+            console.log('키보드 눌림', e.key)
+
+            const dispaly = document.getElementById('displayKey');
+            dispaly.textContent = e.key;
+        });
+
+
+    </script>
+</body>
+</html>

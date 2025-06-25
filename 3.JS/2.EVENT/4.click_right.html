@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #myDiv {
+            background-color: rgb(69, 164, 246);
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myDiv"></div>
+    <script>
+        // document.getElementById('myDiv').addEventListener('contextmenu', (e) => {
+        //     e.preventDefault(); // 본연의 기능이 동작하지 않도록 함
+        //     console.log('우클릭 감지');
+        // });
+
+        // 페이지 전체
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // 본연의 기능이 동작하지 않도록 함
+            alert('우클릭이 금지되어 있음');
+        });
+    </script>
+</body>
+</html>

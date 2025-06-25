@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #dragitem {
+            width: 100px;
+            height:100px;
+            background-color: lightblue;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #dropzone {
+            width: 100px;
+            height:100px;
+            border: 2px dashed #ccc;
+            background-color: #f0f0f0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dragitem" draggable="true">드래그 하시오</div>
+    <div id="dropzone">여기에 떨구시오</div>
+    <script>
+        const dragitem = document.getElementById('dragitem');
+        const dropzone = document.getElementById('dropzone');
+
+        dragitem.addEventListener('dragstart', () => {
+            console.log('드래그 시작됨');
+        });
+
+        dropzone.addEventListener('dragover', (e) => {
+            // 원래 드래그앤드롭은 파일, 링크 같은것들을..
+            e.preventDefault();
+            console.log('뭔가 올라옴');
+        });
+
+        dropzone.addEventListener('drop', () => {
+            dropzone.appendChild(dragitem);
+            console.log('여기 놨음');
+        });
+    </script>
+</body>
+</html>

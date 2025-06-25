@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #content {
+            height: 2000px;
+            background: linear-gradient(to bottom, lightblue 0%, lightgreen 100%)
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content"></div>
+    <script>
+        window.addEventListener('scroll', function () {
+            console.log('스크롤됨');
+
+            // 실무적으로는 이거거나, 저거거나 할때 or를 통해 가져옴
+            // 왼쪽이 우선순위
+            const scrollPosition = window.pageYOffset || document.documentElement.scroll;
+            console.log('현재 스크롤바 위치:', scrollPosition);
+        });
+    </script>
+</body>
+</html>

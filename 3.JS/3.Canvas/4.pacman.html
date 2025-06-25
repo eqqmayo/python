@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title> 
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="300"></button>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const context = canvas.getContext('2d');
+
+        function drawPacman() {
+            context.fillStyle = 'yellow';
+        context.beginPath();
+        context.moveTo(300, 100);
+        const startAngle = 0.2 * Math.PI;
+        const endAngle = 1.8 * Math.PI;
+        context.arc(300, 100, 50, startAngle, endAngle);
+        context.fill();
+        context.closePath();
+    }
+
+    function animate() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawPacman();
+
+        requestAnimationFrame(animate);
+    }
+
+    </script>
+</body>
+</html>

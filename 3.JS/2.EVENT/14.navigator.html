@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>브라우저 정보</h1>
+    <div>User Agent: <span id="userAgent"></span></div>
+    <div>Language: <span id="language"></span></div>
+    <div>Online Status: <span id="onlineStatus"></span></div>
+    <script>
+        document.getElementById('userAgent').textContent = navigator.userAgent;
+        document.getElementById('language').textContent = navigator.language;
+        document.getElementById('onlineStatus').textContent = navigator.onLine;
+
+        document.getElementById('getLocation').addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const { latitude, longitude } = position.coords;
+                    //
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
