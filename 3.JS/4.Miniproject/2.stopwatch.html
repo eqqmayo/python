@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+    <style>
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('assets/Pretendard-Thin.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            height: 60px;
+            width: 100px;
+            font-family: 'Pretendard';
+            font-size: 25px;
+            background-color: black;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:disabled {
+            background-color: #333;
+        }
+
+        #buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        #timeDisplay {
+            font-family: 'Pretendard';
+            font-size: 100px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #timeDisplay span {
+            display: inline-block;
+            width: 1ch;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="timeDisplay">
+        <span>0</span><span>0</span>:<span>0</span><span>0</span>.<span>0</span><span>0</span>
+    </div>
+    <div id="buttons">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+
+    <script>
+        const timeDisplay = document.getElementById('timeDisplay');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        startBtn.addEventListener('click', start);
+        stopBtn.addEventListener('click', stop);
+        resetBtn.addEventListener('click', reset);
+
+        let m = 0;
+        let s = 0;
+        let cs = 0;
+        let timeInterval;
+        let isRunning = false;
+
+        function start() {
+            if (!isRunning) {
+                isRunning = true;
+                timeInterval = setInterval(updateTime, 10);
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+            }
+        }
+
+        function stop() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(timeInterval);
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            }
+        }
+
+        function reset() {
+            clearInterval(timeInterval);
+            isRunning = false;
+            m = 0;
+            s = 0;
+            cs = 0;
+            updateTimeDisplay();
+            startBtn.disabled = false;
+            stopBtn.disabled = false;
+        }
+
+        function updateTime() {
+            cs += 1;
+
+            if (cs == 100) {
+                cs = 0;
+                s += 1;
+
+                if (s == 60) {
+                    s = 0;
+                    m += 1;
+
+                    if (m == 100) {
+                        reset();
+                        return;
+                    }
+                }
+            }
+            updateTimeDisplay();
+        }
+
+        function updateTimeDisplay() {
+            const mStr = String(m).padStart(2, '0');
+            const sStr = String(s).padStart(2, '0');
+            const csStr = String(cs).padStart(2, '0');
+            timeDisplay.innerHTML = 
+                `<span>${mStr[0]}</span><span>${mStr[1]}</span>:<span>${sStr[0]}</span><span>${sStr[1]}</span>.<span>${csStr[0]}</span><span>${csStr[1]}</span>`;
+        }
+
+        updateTimeDisplay();
+    </script>
+</body>
+</html>
