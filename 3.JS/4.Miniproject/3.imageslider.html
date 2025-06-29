@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image Slider</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            height: 40px;
+            width: 60px;
+            font-size: 16px;
+            background-color: transparent;
+            border: none;
+        }
+
+        #cat {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+        }
+
+        #imageDisplay {
+            display: flex;
+            gap: 20px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="imageDisplay">
+        <button id="prevButton">&lt; Prev</button>
+        <img id="cat" src="" alt="cat">
+        <button id="nextButton">Next &gt;</button>
+    </div>
+    <script>
+        const images = [
+            "assets/cat.jpeg",
+            "assets/cat2.jpeg",
+            "assets/cat3.jpeg",
+        ]
+
+        let index = 0;
+
+        const prevButton = document.getElementById("prevButton");
+        const nextButton = document.getElementById("nextButton");
+
+        prevButton.addEventListener("click", () => {
+            if (index > 0) {
+                index -= 1;
+                displayImage();
+            }
+        });
+
+        nextButton.addEventListener("click", () => {
+            if (index < images.length - 1) {
+                index += 1;
+                displayImage();
+            }
+        });
+
+        function displayImage() {
+            const image = document.getElementById("cat");
+            image.src = images[index];
+        }
+
+        displayImage(index);
+    </script>
+</body>
