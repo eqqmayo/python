@@ -16,7 +16,6 @@ class 자전차(차):
     def 정보(self):
         super().정보()
         print('구동계', self.구동계)
- 
 
 class 자동차(차):
     def __init__(self, 바퀴, 가격, 구동계):
