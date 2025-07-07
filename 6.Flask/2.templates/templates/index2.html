@@ -1,0 +1,14 @@
+<html>
+<head>
+</head>
+<body>
+    <h1>hello, Flask!</h1>
+    <p>여기서부터는 평범한 html 코드가 아니고, Jinja2 Template 이라고 부르는 새로운 언어</p>
+    <h2>사용자 목록</h2>
+    <ul>
+        {% for user in users %}
+        <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
+</body>
+<html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+    <style>
+        .disabled {
+            color: gray;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Page {{ page }}</h1>
+    <ul>
+        {% for user in users %}
+        <li>{{ '{} - {} ({}세, {})'.format(user['id'], user['name'], user['age'], user['phone']) }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% if page > 1 %}/?page={{ pre_page }}&limit={{ limit }}{% endif %}"
+       class="{% if page <= 1 %}disabled{% endif %}">Previous</a> |
+    <a href="{% if page < last_page %}/?page={{ next_page }}&limit={{ limit }}{% endif %}"
+       class="{% if page >= last_page %}disabled{% endif %}">Next</a>
+</body>
+<html>

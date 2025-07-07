@@ -1,0 +1,30 @@
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black
+        }
+    </style>
+</head>
+<body>
+    <h1>User Information:</h1>
+    <form>
+        <input type="text" name="name" placeholder="Search user">
+        <input type="submit" value="Search">
+    </form>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Phone</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user['name'] }}</td>
+            <td>{{ user['age'] }}</td>
+            <td>{{ user['mobile'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
