@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        li {
+            width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>파일 업로드</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">전송</button>
+    </form>
+    <ul>
+        {% for file in files %}
+        <li>
+            <span>{{ file }}</span>
+            <form action="/delete/{{ file }}" method="POST">
+                <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
