@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <!-- 나중에 여기에 메뉴 추가 -->
+         <a href="/">Home</a>
+         <a href="/login">Login</a>
+         <a href="/product">Product</a>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+<html>

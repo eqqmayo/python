@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>{% block title %}기본타이틀{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <!-- <a href="/">Home</a>
+        <a href="/">User</a>
+        <a href="/">Admin</a> -->
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('user.user_page') }}">User</a>
+        <a href="{{ url_for('admin.admin_page') }}">Admin</a>
+    </nav>
+    <hr>
+    {% block content %}기본본문{% endblock %}
+</body>
+<html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>마이 픽사베이</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>이미지 검색</h1>
+    <form action="/search" method="GET" id="searchForm">
+        <input type="text" name="q" placeholder="예) cat, dog, etc." required>
+        <button type="submit">검색</button>
+    </form>
+
+    <div id="result">결과 이미지 채울 공간</div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', (e) => {
+            e.preventDefault(); // 원래하던 폼 전송후 리프레시 막기
+            const query = document.getElementById('query').value;
+
+            fetch(`/search?q=${encodedURIComponent(query)}`) // 요청한다
+                .then(response => response.json())  // 요청해서 받아온 응답을 Json 으로 파싱
+                .then(data => {    // 파싱이 끝난 내용을 data라는 변수로 담아와서 처리
+                    // console.log(data)
+                    const resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = ''; // 기존에 결과 있었으면 일단 지우기
+
+                    if (data.url.length == 0) {
+                        resultDiv.innerHTML = '<p>검색결과가 없습니다.</p>'
+                        return;
+                    }
+
+                    data.url.forEach(item => {
+                        resultDiv.innerHTML += `<img src='${item}'>`
+                    })
+                })
+        })
+    </script>
+</body>
+</html>

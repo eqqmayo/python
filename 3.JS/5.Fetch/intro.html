@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>외부 요청</h1>
+    <button id="load">데이터 로딩</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('load').addEventListener('click', () => {
+            console.log('버튼 클릭');
+            // 외부에 요청, xhr 이라는 기술로 xml-http-request 복잡하게 요청했었음
+            // jquery -> ajax
+            // fetch 라는게 생겨남
+            fetch('http://127.0.0.1:5000/data')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('네트워크 오류');
+                    }
+                    return response.json() // 이 리턴 값을 다음의 then이 정한 변수로 
+                })
+                .then(data => {  // 위의 return 결과 즉 response.json()의 값이 data 라는 변수에 받아짐
+                    document.getElementById('result').innerHTML = '<p>' + data + '</p>';
+                })
+                .catch(error => { // 위의 then 등의 구문 중에서 오류가 발생한걸 Error 라는 변수로 받아줌
+                    console.error('오류가 났음:', Error);
+                })
+        })
+    </script>
+</body>
+</html>
