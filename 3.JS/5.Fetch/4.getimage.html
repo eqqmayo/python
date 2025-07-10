@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="get">GET</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('get').addEventListener('click', () => {
+            fetch('https://dog.ceo/api/breeds/image/random')
+                .then(response => response.json())
+                .then(json => document.getElementById('result').innerHTML = `<img src=${json['message']}>`)
+        })
+
+    </script>
+</body>
+</html>

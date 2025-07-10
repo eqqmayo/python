@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="load">로드</button>
+    <div id="result"></div>
+
+    <script>
+        const loadBtn = document.getElementById('load')
+        const resultDiv = document.getElementById('result');
+
+        loadBtn.addEventListener('click', () => {
+            console.log('버튼클릭');
+            fetch('http://127.0.0.1:5000/data')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('통신중 오류가 발생')
+                    }
+                    // Content-Type 으로 데이터포맷 확인해보거나,
+                    
+                    return response.text() // 일단 text로 받아서
+                })
+                .then(text => {
+                    try {
+                        // JSON인지 시도해보고
+                        return JSON.parse(text);
+                    } catch {
+                        // JSON이 아니면 그냥 텍스트로 반환
+                        return text;
+                    }
+                })
+                .then(data => {
+                    resultDiv.classList.add('success');
+                    console.log(data)
+                    resultDiv.innerHTML = data
+                })
+                .catch(error => {
+                    resultDiv.classList.add('error')
+                    resultDiv.innerHTML = '통신 중 에러 발생'
+                });
+            console.log('fetch 이후') // 실제 순서 x
+        })
+    </script>
+</body>
+</html>

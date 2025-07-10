@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <select id="breeds" class="dropdown">
+        <option value="">강아지 품종을 선택하세요</option>
+    </select>
+
+    <select id="subbreeds" class="dropdown">
+        <option value="">하위 품종을 선택하세요</option>
+    </select>
+
+    <button id="get">GET</button>
+    <div id="result"></div>
+
+    <script>
+        let breedList = {}
+
+        fetch('https://dog.ceo/api/breeds/list/all')
+            .then(response => response.json())
+            .then(json => { 
+                breedList = Object(json['message'])
+                return keys(breedList) 
+            })
+            .then(breeds => {
+                breeds.forEach(breed => {
+                    const option = document.createElement('option');
+                    option.value = breed;
+                    item.textContent = breed;
+                    document.getElementById('breeds').appendChild(item);
+                });
+            })
+
+        document.getElementById('get').addEventListener('click', () => {
+            const breed = document.getElementById('breeds').value;
+            if (!breed) return;
+            
+            fetch(`https://dog.ceo/api/breed/${breed}/list`)
+            .then(response => response.json())
+            .then(json => Object.keys(json['message']))
+            .then(breedList => {
+                breedList.forEach(breed => {
+                    const item = document.createElement('option');
+                    item.value = breed;
+                    item.textContent = breed;
+                    breedSelect.appendChild(item);
+                });
+            })
+
+            fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
+                .then(response => response.json())
+                .then(json => document.getElementById('result').innerHTML = `<img src=${json['message']}>`)
+        })
+    </script>
+</body>
+</html>
