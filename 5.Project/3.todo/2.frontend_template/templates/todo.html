@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <style>
+        @font-face {
+            font-family: 'SpotifyMix';
+            src: url('assets/SpotifyMix-Black.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('assets/Pretendard-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            background-color: lavender;
+            font-family: 'Pretendard';
+            font-size: 16px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+
+            margin: 10px;
+            min-height: calc(100vh - 20px);
+            border: 1.5px solid black;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'SpotifyMix';
+            font-size: 100px;
+            margin-top: 100px;
+            margin-bottom: 50px;
+        }
+
+        .input-container {
+            width: 280px;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 240px;
+            border: none;
+            border-bottom: 1.5px solid black;
+            background-color: transparent;
+            outline: none;
+            padding: 5px;
+            font-size: inherit;
+        }
+
+        input:focus {
+            border-bottom: 2px solid black;
+        }
+
+        button {
+            border: 1.5px solid black;
+            background-color: transparent;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: inherit;
+        }
+
+        button:hover {
+            background-color: black;
+            color: lavender;
+        }
+
+        ul {
+            width: 280px;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 50px;
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        li::before {
+            content: '✧';
+        }
+
+        li.completed::before {
+            content: '✦';
+        }
+
+        .completed span {
+            text-decoration: line-through;
+        }
+
+        #deleteBtn {
+            border: none;
+            background: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            margin-left: auto;
+            font-size: 20px;
+            opacity: 0;
+        }
+
+        #deleteBtn:hover {
+            color: #ff4444;
+        }
+
+        li:hover #deleteBtn {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Todo List</h1>
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="Add task ...">
+        <button id="addBtn">+</button>
+    </div>
+    <ul id="todoList"></ul>
+    <script>
+        const todoList = document.getElementById('todoList');
+        const addBtn = document.getElementById('addBtn');
+        const userInput = document.getElementById('userInput');
+
+        addBtn.addEventListener('click', addTodo);
+        todoList.addEventListener('click', toggleStatus);
+        userInput.addEventListener('keypress', (e) => 
+            e.key === 'Enter' && addTodo()
+        );
+
+        function addTodo() {
+            const userInput = document.getElementById('userInput');
+            const inputValue = userInput.value;
+
+            if (inputValue === '' || inputValue.trim() === '') {
+                userInput.value = ''
+                return;
+            }
+
+            const new_li = document.createElement('li');
+            const span = document.createElement('span');
+            span.textContent = inputValue;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '␥';
+            deleteBtn.id = 'deleteBtn';
+            deleteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                new_li.remove();
+            });
+
+            userInput.value = ''
+            new_li.appendChild(span);
+            new_li.appendChild(deleteBtn);
+            todoList.appendChild(new_li);
+        }
+
+        function toggleStatus(event) {
+            if (event.target.tagName === 'SPAN') {
+                event.target.parentElement.classList.toggle('completed');
+            }
+        }
+    </script>
+</body>
+</html>
