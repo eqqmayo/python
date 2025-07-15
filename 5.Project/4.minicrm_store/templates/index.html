@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+     <style>
+     </style>
+</head>
+<body>
+    <h1>상점 리스트</h1>
+    <!-- 검색을 위한 폼추가 -->
+    <!-- 폼과 입력값을 넣고 /를 다시 불러서 그 검색내용만 출력되게 -->
+    <!-- GET 방식, 쿼리파라미터로 -->
+    <form>
+    <!-- <form action="/" method="GET"> -->
+        <input type="text" name="name" value="{{ search }}" required>
+        <button type="submit">검색</button><br><br>
+    </form>
+    <table border=1>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Address</th>
+        </tr>
+        {% for store in stores %}
+        <tr>
+            <td>{{ store.id }}</td>
+            <td>{{ store.name }}</td>
+            <td>{{ store.type }}</td>
+            <td>{{ store.address }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+ 
+    
+</body>
+</html>
