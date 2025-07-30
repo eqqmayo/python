@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}상품 페이지{% endblock %}
+{% block content %}
+<h1>장바구니</h1>
+<ul>
+    {% if items %}
+    {% for item in items %}
+    <li>{{ item.name }} - {{ item.price }}원 - {{ item.count }}개</li>
+    {% endfor %}
+    {% endif %}
+</ul>
+{% endblock %}
+
