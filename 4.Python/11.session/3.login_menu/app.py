@@ -1,10 +1,13 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask import session
 
 app = Flask(__name__)
 app.secret_key = 'sesac'
 
-users = [{'name': 'SeSAC', 'id': 'sesac', 'pw': 'sesac'}]
+users = [
+    {'name': 'SeSAC', 'id': 'sesac', 'pw': 'sesac'},
+    {'name': 'HI', 'id': 'hi', 'pw': 'hi'},
+    ]
 
 items = [
     {'id': 'prod-001', 'name': '사과', 'price': '1000'},
@@ -64,6 +67,39 @@ def user():
     if user:
         return render_template('user.html', user=user)
     return redirect(url_for('login'))
+
+@app.route('/edit-profile', methods=['GET', 'POST'])
+def edit_profile():
+    user = session.get('user')
+
+    if request.method == 'POST':
+        new_id = request.form.get('id')
+        new_pw = request.form.get('pw')
+        
+        current_id = session['user']['id']
+        is_edited = False
+
+        for user in users:
+            if user['id'] == current_id:
+                if new_id:
+                    user['id'] = new_id
+                    session['user']['id'] = new_id
+                    is_edited = True
+                if new_pw:
+                    user['pw'] = new_pw
+                    session['user']['pw'] = new_pw
+                    is_edited = True
+                break
+
+        if is_edited:
+            session.modified = True
+            flash('프로필 변경 완료')
+        else:
+            flash('변경 사항 없음')
+
+        return render_template('profile.html', user=user)
+
+    return render_template('profile.html', user=user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
