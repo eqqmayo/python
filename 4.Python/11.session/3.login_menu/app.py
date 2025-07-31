@@ -93,9 +93,9 @@ def edit_profile():
 
         if is_edited:
             session.modified = True
-            flash('프로필 변경 완료')
+            flash('프로필 변경 완료', "success")
         else:
-            flash('변경 사항 없음')
+            flash('변경 사항 없음', "warning")
 
         return render_template('profile.html', user=user)
 
